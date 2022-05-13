@@ -8,6 +8,7 @@ Instale as dependências a seguir:
 
 - Ruby 3.1.2
 - Bundler (`gem install bundler` depois de instalar o Ruby)
+- PostgreSQL >= 11.0
 
 Rode os comandos: 
 
