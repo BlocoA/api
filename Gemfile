@@ -33,14 +33,14 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 group :development, :test do
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
   gem 'pry-rails', '~> 0.3.3'
-end
-
-group :development do
-  gem 'annotate', '~> 3.2'
   gem 'rubocop', '~> 1.29', '>= 1.29.1'
   gem 'rubocop-performance', '~> 1.13', '>= 1.13.3'
   gem 'rubocop-rails', '~> 2.14', '>= 2.14.2'
   gem 'rubocop-rspec', '~> 2.10'
+end
+
+group :development do
+  gem 'annotate', '~> 3.2'
 end
 
 group :test do
