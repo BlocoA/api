@@ -14,7 +14,15 @@ Rode os comandos:
 
 ```bash
 bundle install
-bundle exec rails server
+bundle exec rails server -p 5000 -b 0.0.0.0
 ```
 
-A aplicação estará rodando em: http://localhost:3000
+A aplicação estará rodando em: http://localhost:5000
+
+## Com Docker
+
+Tenha a última versão do Docker e Docker Compose instalada.
+
+Rode o comando:
+
+- `docker compose up`

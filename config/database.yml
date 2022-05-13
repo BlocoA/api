@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV.fetch('BASE_DATABASE_URL', '') + 'blocoa_api_development' %>
+  url: <%= ENV.fetch('BASE_DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/') + 'blocoa_api_development' %>
 
 test:
   <<: *default
-  url: <%= ENV.fetch('BASE_DATABASE_URL', '') + 'blocoa_api_test' %>
+  url: <%= ENV.fetch('BASE_DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/') + 'blocoa_api_test' %>
 
 production:
   <<: *default
