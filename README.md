@@ -1,24 +1,19 @@
-# README
+# Bloco A API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para rodar o projeto em modo desenvolvimento, temos as opções com e sem Docker.
 
-Things you may want to cover:
+## Sem Docker
 
-* Ruby version
+Instale as dependências a seguir:
 
-* System dependencies
+- Ruby 3.1.2
+- Bundler (`gem install bundler` depois de instalar o Ruby)
 
-* Configuration
+Rode os comandos: 
 
-* Database creation
+```bash
+bundle install
+bundle exec rails server
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A aplicação estará rodando em: http://localhost:3000
