@@ -10,6 +10,8 @@ Instale as dependências a seguir:
 - Bundler (`gem install bundler` depois de instalar o Ruby)
 - PostgreSQL >= 11.0
 
+Configure as variáveis de ambiente rodando `cp .env.example .env` e substituindo no arquivo `.env` os valores corretos para cada variável.
+
 Rode os comandos: 
 
 ```bash
