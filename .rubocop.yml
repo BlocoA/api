@@ -10,6 +10,7 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/{bundle,spring,setup,rails,rake}'
+    - 'vendor/'
   TargetRubyVersion: 3.0.3
 
 Metrics/BlockLength:
