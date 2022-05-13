@@ -32,3 +32,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
   gem 'pry-rails', '~> 0.3.3'
 end
+
+group :test do
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+end
