@@ -1,44 +1,16 @@
-name: Ruby
+name: Deploy
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
-    
-env:
-  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/
-  RAILS_ENV: test
 
-jobs:     
-  quality_checks:
-    name: Quality Checks
-    
+jobs:
+  build:
     runs-on: ubuntu-latest
-    
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          bundler-cache: true
-      - name: Install dependencies
-        run: bundle install
-      - name: Setup test database
-        run: bundle exec rails db:prepare
-      - name: Run RSpec
-        run: bundle exec rspec
-      - name: Run Rubocop
-        run: bundle exec rubocop
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: blocoa-api
+          heroku_email: ${{secrets.HEROKU_DEPLOY_EMAIL}}
