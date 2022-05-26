@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_005204) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_014227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_005204) do
     t.boolean "has_leisure_area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.bigint "condominium_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.integer "month"
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["condominium_id"], name: "index_documents_on_condominium_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -74,6 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_005204) do
 
   add_foreign_key "condominium_users", "condominiums"
   add_foreign_key "condominium_users", "users"
+  add_foreign_key "documents", "condominiums"
+  add_foreign_key "documents", "users"
   add_foreign_key "invites", "condominiums"
   add_foreign_key "invites", "users"
   add_foreign_key "residents", "units"
