@@ -1,4 +1,4 @@
-name: Ruby
+name: Review
 
 on:
   pull_request:
