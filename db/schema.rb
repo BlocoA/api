@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_003518) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_004153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_003518) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "residents", force: :cascade do |t|
+    t.bigint "unit_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_residents_on_unit_id"
+    t.index ["user_id"], name: "index_residents_on_user_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.bigint "condominium_id", null: false
     t.string "identifier", null: false
@@ -50,5 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_003518) do
 
   add_foreign_key "condominium_users", "condominiums"
   add_foreign_key "condominium_users", "users"
+  add_foreign_key "residents", "units"
+  add_foreign_key "residents", "users"
   add_foreign_key "units", "condominiums"
 end
