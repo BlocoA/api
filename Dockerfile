@@ -7,7 +7,8 @@ RUN apk add --update --no-cache \
   build-base \
   sudo \
   libpq-dev \
-  tzdata
+  tzdata \
+  vips-dev
 
 RUN mkdir -p /app
 WORKDIR /app
