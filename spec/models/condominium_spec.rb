@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 describe Condominium, type: :model do
-  describe '#name' do
-    it { is_expected.to validate_presence_of(:name) }
-  end
+  it { is_expected.to have_many(:condominium_users) }
+  it { is_expected.to have_many(:users).through(:condominium_users) }
+
+  it { is_expected.to validate_presence_of(:name) }
 end
