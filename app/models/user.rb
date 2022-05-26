@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :condominium_users, dependent: :destroy
   has_many :condominiums, through: :condominium_users
+  has_many :invites, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

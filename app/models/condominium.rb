@@ -6,6 +6,7 @@ class Condominium < ApplicationRecord
   has_many :condominium_users, dependent: :destroy
   has_many :users, through: :condominium_users
   has_many :units, dependent: :destroy
+  has_many :invites, dependent: :destroy
 
   validates :name, presence: true
 end

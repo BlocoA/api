@@ -24,6 +24,7 @@ describe User, type: :model do
 
   it { is_expected.to have_many(:condominium_users) }
   it { is_expected.to have_many(:condominiums).through(:condominium_users) }
+  it { is_expected.to have_many(:invites) }
 
   it { is_expected.to have_secure_password }
 
