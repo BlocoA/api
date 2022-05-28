@@ -32,4 +32,10 @@ describe User, type: :model do
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.not_to allow_values(invalid_emails).for(:email) }
+
+  context 'email uniqueness' do
+    subject { build(:user) }
+
+    it { is_expected.to validate_uniqueness_of(:email) }
+  end
 end

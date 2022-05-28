@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     resources :condominiums, only: %i[show create update destroy]
+    resources :users, only: %i[create]
   end
 end
