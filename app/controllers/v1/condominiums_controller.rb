@@ -12,7 +12,7 @@ module V1
       condominium = Condominium.new(condominium_params)
 
       if condominium.save
-        render json: condominium
+        render json: condominium, status: :created
       else
         errors = condominium.errors.full_messages.join(', ')
         render json: { errors: errors }, status: :bad_request
