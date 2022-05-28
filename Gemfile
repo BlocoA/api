@@ -12,19 +12,8 @@ gem 'bootsnap', require: false
 gem 'image_processing', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem 'jbuilder'
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem 'kredis'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
