@@ -10,6 +10,7 @@ gem 'rails', '~> 7.0.3'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'bootsnap', require: false
 gem 'image_processing', '~> 1.2'
+gem 'jwt', '~> 2.3'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
