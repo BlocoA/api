@@ -19,7 +19,7 @@ module V1
       user = authenticate_user
 
       if user
-        token = JsonWebToken.encode(user_id: user.id, exp: 2.months.to_i)
+        token = JsonWebToken.encode(user_id: user.id, exp: 2.months.from_now.to_i)
         render json: { token: token }, status: :ok
       else
         render json: { errors: 'Unauthorized' }, status: :unauthorized
