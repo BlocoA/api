@@ -4,6 +4,14 @@ module V1
   class CondominiumsController < ApplicationController
     before_action :set_condominium, only: %i[show update destroy]
 
+    def index
+      condominiums = Condominium.joins(:condominium_users).where(
+        condominium_users: { user_id: current_user.id }
+      )
+
+      render json: condominiums
+    end
+
     def show
       render json: @condominium
     end
