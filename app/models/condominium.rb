@@ -10,4 +10,9 @@ class Condominium < ApplicationRecord
   has_many :documents, dependent: :destroy
 
   validates :name, presence: true
+
+  def assign_manager(user)
+    condominium_user = CondominiumUser.new(user: user, user_role: :manager)
+    condominium_users << condominium_user
+  end
 end

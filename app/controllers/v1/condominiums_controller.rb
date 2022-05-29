@@ -10,6 +10,7 @@ module V1
 
     def create
       condominium = Condominium.new(condominium_params)
+      condominium.assign_manager(current_user)
 
       if condominium.save
         render json: condominium, status: :created
