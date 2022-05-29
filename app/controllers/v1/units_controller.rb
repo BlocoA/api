@@ -5,9 +5,9 @@ module V1
     before_action :set_unit, only: %i[show update destroy]
 
     def index
-      units = Unit.joins(condominium: [:condominium_users]).where(
-        condominium_users: { user_id: current_user.id }
-      )
+      return render_missing_param_error_for('condominium_id') unless params[:condominium_id]
+
+      units = Unit.where(condominium_id: params[:condominium_id])
 
       render json: units
     end
@@ -17,7 +17,7 @@ module V1
     end
 
     def create
-      unit = Unit.new(unit_params)
+      unit = Unit.new(unit_create_params)
 
       if unit.save
         render json: unit, status: :created
@@ -28,7 +28,7 @@ module V1
     end
 
     def update
-      if @unit.update(unit_params)
+      if @unit.update(unit_update_params)
         render json: @unit
       else
         errors = @unit.errors.full_messages.join(', ')
@@ -51,8 +51,16 @@ module V1
       @unit = Unit.find(params[:id])
     end
 
-    def unit_params
+    def unit_create_params
       params.require(:unit).permit(:identifier, :condominium_id)
+    end
+
+    def unit_update_params
+      params.require(:unit).permit(:identifier)
+    end
+
+    def render_missing_param_error_for(param_name)
+      render(json: { errors: "Missing #{param_name} param" }, status: :bad_request)
     end
   end
 end
