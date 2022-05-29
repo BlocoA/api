@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     resources :condominiums, only: %i[index show create update destroy]
+    resources :residents, only: %i[index show create update destroy]
     resources :units, only: %i[index show create update destroy]
     resources :users, only: %i[create]
     post 'users/access_token', to: 'users#access_token'
