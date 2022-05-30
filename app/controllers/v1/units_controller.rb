@@ -2,11 +2,12 @@
 
 module V1
   class UnitsController < ApplicationController
+    include CondominiumScope
+
+    validate_condominium_id(only_at: :index)
     before_action :set_unit, only: %i[show update destroy]
 
     def index
-      return render_missing_param_error_for('condominium_id') unless params[:condominium_id]
-
       units = Unit.where(condominium_id: params[:condominium_id])
 
       render json: units
@@ -57,10 +58,6 @@ module V1
 
     def unit_update_params
       params.require(:unit).permit(:identifier)
-    end
-
-    def render_missing_param_error_for(param_name)
-      render(json: { errors: "Missing #{param_name} param" }, status: :bad_request)
     end
   end
 end
