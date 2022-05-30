@@ -15,6 +15,7 @@ services:
     environment:
       - BASE_DATABASE_URL=postgresql://postgres:@db:5432/
       - SECRET_KEY_BASE=HhhF9W2krl6ROstiEDNXeNCBzJqwhFh7
+      - BASE_URL=localhost:5000
     depends_on:
       - postgres
     entrypoint: ./entrypoint.sh
