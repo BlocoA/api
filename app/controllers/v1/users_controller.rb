@@ -8,7 +8,7 @@ module V1
       user = User.new(user_params.merge(password: params[:password]))
 
       if user.save
-        render json: { name: user.name, email: user.email }, status: :created
+        render json: user, status: :created
       else
         errors = user.errors.full_messages.join(', ')
         render json: { errors: errors }, status: :bad_request
