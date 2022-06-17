@@ -4,7 +4,7 @@ module V1
   class UnitsController < ApplicationController
     include CondominiumScope
 
-    validate_condominium_id(only_at: :index)
+    validate_condominium_id(only_at: %i[index units_with_residents])
     before_action :set_unit, only: %i[show update destroy]
 
     def index
@@ -15,6 +15,23 @@ module V1
 
     def show
       render json: @unit
+    end
+
+    def units_with_residents
+      units = Unit.where(condominium_id: params[:condominium_id])
+
+      unit_with_residents = units.map do |unit|
+        {
+          identifier: unit.identifier,
+          haveResident: unit.residents.length.positive?,
+          info: {
+            name: unit.residents.first&.name,
+            contact: unit.residents.first&.phone
+          }
+        }
+      end
+
+      render json: unit_with_residents
     end
 
     def create

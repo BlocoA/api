@@ -20,7 +20,21 @@ module V1
     end
 
     def create
-      resident = Resident.new(resident_create_params)
+      user = User.create_user_associate_condominium(
+        resident_create_params[:name],
+        resident_create_params[:email],
+        params[:condominium_id]
+      )
+
+      unit = Unit.find_by(identifier: params[:identifier], condominium_id: params[:condominium_id])
+
+      resident = Resident.new(
+        name: user.name,
+        email: user.email,
+        phone: resident_create_params[:phone],
+        unit_id: unit.id,
+        user_id: user.id
+      )
 
       if resident.save
         render json: resident, status: :created
@@ -55,7 +69,7 @@ module V1
     end
 
     def resident_create_params
-      params.require(:resident).permit(:name, :email, :phone, :unit_id, :user_id)
+      params.require(:resident).permit(:name, :email, :phone, :identifier, :condominium_id)
     end
 
     def resident_update_params
