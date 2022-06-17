@@ -15,4 +15,8 @@ class Condominium < ApplicationRecord
     condominium_user = CondominiumUser.new(user: user, user_role: :manager)
     condominium_users << condominium_user
   end
+
+  def manager
+    users.where(condominium_users: { user_role: :manager }).first
+  end
 end
