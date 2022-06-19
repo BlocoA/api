@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 describe 'V1::Units', type: :request do
-  let!(:condominium) { Condominium.create!(name: 'Condominium ABC', units_quantity: 10, has_leisure_area: true) }
-  let!(:token) { user_login(create(:user)) }
+  let!(:user) { User.create!(name: 'Test User', email: 'test-email@mail.com', password: '12345678') }
+  let!(:condominium) { create(:condominium) }
+  let!(:token) { user_login(user) }
   let!(:headers) { { Authorization: "Bearer #{token}" } }
 
   describe 'GET /v1/units/with_resident_info' do

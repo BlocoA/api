@@ -3,8 +3,8 @@
 describe 'V1::Residents', type: :request do
   let!(:condominium) { create(:condominium) }
   let!(:unit) { create(:unit, condominium_id: condominium.id) }
-  let!(:token) { user_login(create(:user)) }
-  let!(:headers) { { Authorization: "Bearer #{token}" } }
+  let!(:user) { User.create!(name: 'Test User', email: 'test-email@mail.com', password: '12345678') }
+  let!(:headers) { { Authorization: "Bearer #{user_login(user)}" } }
 
   describe 'POST' do
     context 'with valid params' do
