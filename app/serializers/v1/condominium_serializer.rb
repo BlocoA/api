@@ -2,6 +2,6 @@
 
 module V1
   class CondominiumSerializer < ApplicationSerializer
-    attributes :id, :name, :units_quantity, :has_leisure_area
+    attributes :id, :name, :units_quantity, :has_leisure_area, :manager
   end
 end

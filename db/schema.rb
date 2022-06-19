@@ -72,6 +72,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_003335) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.string "contractee"
+    t.decimal "amount"
+    t.datetime "spent_at", precision: nil
+    t.integer "expense_type"
+    t.string "description"
+    t.bigint "condominium_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["condominium_id"], name: "index_expenses_on_condominium_id"
+  end
+
   create_table "invites", force: :cascade do |t|
     t.bigint "condominium_id", null: false
     t.bigint "user_id", null: false
@@ -119,6 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_003335) do
   add_foreign_key "condominium_users", "users"
   add_foreign_key "documents", "condominiums"
   add_foreign_key "documents", "users"
+  add_foreign_key "expenses", "condominiums"
   add_foreign_key "invites", "condominiums"
   add_foreign_key "invites", "users"
   add_foreign_key "residents", "units"

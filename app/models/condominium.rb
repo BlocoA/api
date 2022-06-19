@@ -24,4 +24,8 @@ class Condominium < ApplicationRecord
       )
     end
   end
+
+  def manager
+    users.where(condominium_users: { user_role: :manager }).first
+  end
 end

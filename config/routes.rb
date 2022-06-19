@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :condominiums, only: %i[index show create update destroy]
     resources :documents, only: %i[index show create destroy]
+    resources :expenses, only: %i[index show create update destroy]
     resources :residents, only: %i[index show create update destroy]
     get 'units/with_resident_info', to: 'units#units_with_residents'
     resources :units, only: %i[index show create update destroy]
