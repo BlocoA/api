@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'V1::Units', type: :request do
-  let!(:user) { User.create!(name: 'Test User', email: 'test-email@mail.com', password: '12345678') }
+  let!(:user) { create(:user) }
   let!(:condominium) { create(:condominium) }
   let!(:token) { user_login(user) }
   let!(:headers) { { Authorization: "Bearer #{token}" } }

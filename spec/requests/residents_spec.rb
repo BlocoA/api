@@ -3,7 +3,7 @@
 describe 'V1::Residents', type: :request do
   let!(:condominium) { create(:condominium) }
   let!(:unit) { create(:unit, condominium_id: condominium.id) }
-  let!(:user) { User.create!(name: 'Test User', email: 'test-email@mail.com', password: '12345678') }
+  let!(:user) { create(:user) }
   let!(:headers) { { Authorization: "Bearer #{user_login(user)}" } }
 
   describe 'POST' do
