@@ -13,15 +13,13 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   def self.create_user_associate_condominium(name, email, condominium_id)
-    user = User.new(email: email, name: name)
-    user.save!
+    user = User.create!(email: email, name: name)
 
-    condominium_user = CondominiumUser.new(
+    CondominiumUser.create!(
       user: user,
       user_role: :resident,
       condominium_id: condominium_id
     )
-    condominium_user.save!
 
     user
   end

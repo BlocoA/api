@@ -18,18 +18,7 @@ module V1
     end
 
     def units_with_residents
-      units = Unit.where(condominium_id: params[:condominium_id])
-
-      unit_with_residents = units.map do |unit|
-        {
-          identifier: unit.identifier,
-          haveResident: unit.residents.length.positive?,
-          info: {
-            name: unit.residents.first&.name,
-            contact: unit.residents.first&.phone
-          }
-        }
-      end
+      unit_with_residents = UnitService.new.get_units_with_residents_info(params[:condominium_id])
 
       render json: unit_with_residents
     end

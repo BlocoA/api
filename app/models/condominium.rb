@@ -18,12 +18,10 @@ class Condominium < ApplicationRecord
 
   def create_initial_units(condominium_id, quantity)
     (1..quantity).each do |index|
-      unit = Unit.new(
+      Unit.create!(
         identifier: index.to_s,
         condominium_id: condominium_id
       )
-
-      unit.save!
     end
   end
 end
