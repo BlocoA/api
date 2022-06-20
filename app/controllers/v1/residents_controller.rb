@@ -20,7 +20,7 @@ module V1
     end
 
     def create
-      resident = Resident.new(resident_create_params)
+      resident = ResidentService.new.create_resident(resident_create_params)
 
       if resident.save
         render json: resident, status: :created
@@ -55,7 +55,8 @@ module V1
     end
 
     def resident_create_params
-      params.require(:resident).permit(:name, :email, :phone, :unit_id, :user_id)
+      params.require(:resident).permit(:name, :email, :phone).merge(identifier: params[:identifier],
+                                                                    condominium_id: params[:condominium_id])
     end
 
     def resident_update_params

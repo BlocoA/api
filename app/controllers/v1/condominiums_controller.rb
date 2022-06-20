@@ -21,6 +21,7 @@ module V1
       condominium.assign_manager(current_user)
 
       if condominium.save
+        condominium.create_initial_units(condominium.id, condominium.units_quantity)
         render json: condominium, status: :created
       else
         errors = condominium.errors.full_messages.join(', ')
